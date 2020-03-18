@@ -2,7 +2,7 @@
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
-using MatrixXd::Identity;
+
 /* 
  * Please note that the Eigen library does not initialize 
  *   VectorXd or MatrixXd objects with zeros upon creation.
@@ -26,22 +26,22 @@ void KalmanFilter::Predict() {
   /**
    * predict the state
    */
-  x_ = F_ * x_ ;
-  P_ = F_ * P_ * F.transpose() + Q_;
+  x_ = F_ * x_;
+  P_ = F_ * P_ * F_.transpose() + Q_;
   
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
   /**
-   * TODO: update the state by using Kalman Filter equations
+   * update the state by using Kalman Filter equations
    */
-  VectorXd y = z-H_*x_
+  VectorXd y = z-H_*x_;
   UpdateHelper(y);
 }
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
   /**
-   * TODO: update the state by using Extended Kalman Filter equations
+   * update the state by using Extended Kalman Filter equations
    */
 
   double px = x_[0];
@@ -49,12 +49,13 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   double vx = x_[2];
   double vy = x_[3];
   
-  double rho = pow((px*px) + py*py),0.5)
+  double rho = pow((px*px + py*py),0.5);
   double phi =  atan2(py,px);
-  double rho_dot = rho_dot* cos(phi);
+  
+  double rho_dot = (px*vx+py*vy)/pow(rho,2);
   VectorXd x_polar = VectorXd(3);
   x_polar << rho, phi, rho_dot;
-  y = z-H_*x_polar
+  VectorXd y = z-H_*x_polar;
     
   // Normalize angle
   while (y(1) > M_PI) {
@@ -75,7 +76,7 @@ void KalmanFilter::UpdateHelper(const VectorXd &y){
   // Calculate new state
   x_ = x_ + (K * y);
   int state_size = x_.size();
-  MatrixXd I = Identity(state_size, state_size);
+  MatrixXd I = MatrixXd::Identity(state_size, state_size);
   P_ = (I - K * H_) * P_;
   
 }
