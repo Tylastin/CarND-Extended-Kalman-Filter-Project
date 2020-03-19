@@ -49,13 +49,19 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   double vx = x_[2];
   double vy = x_[3];
   
-  double rho = pow((px*px + py*py),0.5);
+  double rho = sqrt(px*px + py*py);
+  //check division by zero
+  if(rho < .00001) {
+    px += .0001;
+    py += .0001;
+    rho = sqrt(px * px + py * py);
+  }
   double phi =  atan2(py,px);
   
-  double rho_dot = (px*vx+py*vy)/pow(rho,2);
-  VectorXd x_polar = VectorXd(3);
-  x_polar << rho, phi, rho_dot;
-  VectorXd y = z-H_*x_polar;
+  double rho_dot = (px*vx+py*vy)/rho;
+  VectorXd h = VectorXd(3);
+  h << rho, phi, rho_dot;
+  VectorXd y = z-h;
     
   // Normalize angle
   while (y(1) > M_PI) {
