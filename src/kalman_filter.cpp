@@ -63,14 +63,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   h << rho, phi, rho_dot;
   VectorXd y = z-h;
     
-  // Normalize angle
-  while (y(1) > M_PI) {
-    y(1) -= (2 * M_PI);
-  }
-  while (y(1) < -M_PI) {
-    y(1) += (2 * M_PI);
-  }
-  
+  y(1) = NormalizeAngle(y(1));
   UpdateHelper(y);
 }
 
@@ -83,6 +76,16 @@ void KalmanFilter::UpdateHelper(const VectorXd &y){
   x_ = x_ + (K * y);
   int state_size = x_.size();
   MatrixXd I = MatrixXd::Identity(state_size, state_size);
-  P_ = (I - K * H_) * P_;
-  
+  P_ -= K * H_ * P_;
 }
+
+double KalmanFilter::NormalizeAngle(double y) {
+  while (y > M_PI) {
+    y -= (2 * M_PI);
+  }
+  while (y < -M_PI) {
+    y += (2 * M_PI);
+  }
+  return y;
+}
+
