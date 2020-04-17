@@ -5,7 +5,7 @@ In this project an Extended Kalman Filter is used to estimate the state of a mov
 This project was completed as part of the Self-Driving Car Engineer Nanodegree Program.
 
 ## Demo
-A video demo of the Extended Kalman Filter running in simulation is included in the "kalman_demo.mov" file. 
+A video demo of the Extended Kalman Filter running in simulation can be found [here](./kalman_demo.mov). 
 
 ![Filter Running in Simulator](sim_img.png)
 
