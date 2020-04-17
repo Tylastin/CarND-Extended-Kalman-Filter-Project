@@ -7,7 +7,7 @@ This project was completed as part of the Self-Driving Car Engineer Nanodegree P
 ## Demo
 A video demo of the Extended Kalman Filter running in simulation is included in the "kalman_demo.mov" file. 
 
-![alt text] sim_img.png "Filter running in simulator")
+![Filter Running in Simulator](sim_img.png)
 
 Lidar measurements are red circles, radar measurements are blue circles with an arrow pointing in the direction of the observed angle, and estimation markers are green triangles. The video below shows what the simulator looks like when a c++ script is using its Kalman filter to track the object. The simulator provides the script the measured data (either lidar or radar), and the script feeds back the measured estimation marker, and RMSE values from its Kalman filter.
 
