@@ -1,15 +1,23 @@
-# Extended Kalman Filter Project 
+# Extended Kalman Filter Project
 
-In this project an Extended Kalman Filter is used to estimate the state of a moving object of interest with noisy lidar and radar measurements. 
+In this project an Extended Kalman Filter is used to estimate the state of a moving object of interest with noisy lidar and radar measurements. At each time step, sensor fusion data is fed into the filter. The filter processes the data and outputs an updated state estimation. A Unity simulator (shown in the demo section) was used to visualize and test the extended kalman filter.
 
 This project was completed as part of the Self-Driving Car Engineer Nanodegree Program.
 
 ## Demo
-A video demo of the Extended Kalman Filter running in simulation can be found [here](./kalman_demo.mov). 
+A video demo of the Extended Kalman Filter running in simulation can be found [here](./kalman_demo.mov).
+
+How the simulator works:
+1. The simulator provides the filter with the measurement data (either lidar or radar) at each time step.  
+2. The Filter sends an updated state estimation and RMSE values back to the simulator.
+3. The simulator translates the state into a spatial representation and displays the RMSE values.  
 
 ![Filter Running in Simulator](sim_img.png)
 
-Lidar measurements are red circles, radar measurements are blue circles with an arrow pointing in the direction of the observed angle, and estimation markers are green triangles. The video below shows what the simulator looks like when a c++ script is using its Kalman filter to track the object. The simulator provides the script the measured data (either lidar or radar), and the script feeds back the measured estimation marker, and RMSE values from its Kalman filter.
+Description of the image:
+* The image above shows an example of the simulator and the extended kalman filter running.
+* The lidar measurements are red circles.
+* The radar measurements are blue circles with an arrow pointing in the direction of the observed angle, and estimation markers are green triangles. 
 
 ## Setup
 
@@ -67,7 +75,7 @@ Here is the main protocol that main.cpp uses for uWebSocketIO in communicating w
 
 1. Clone this repo.
 2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make` 
+3. Compile: `cmake .. && make`
    * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
 4. Run it: `./ExtendedKF `
 
@@ -76,7 +84,3 @@ Here is the main protocol that main.cpp uses for uWebSocketIO in communicating w
 
 If you'd like to generate your own radar and lidar data, see the
 [utilities repo](https://github.com/udacity/CarND-Mercedes-SF-Utilities) for Matlab scripts that can generate additional data.
-
-
-
-
