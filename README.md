@@ -17,7 +17,7 @@ How the simulator works:
 Description of the image:
 * The image above shows an example of the simulator and the extended kalman filter running.
 * The lidar measurements are red circles.
-* The radar measurements are blue circles with an arrow pointing in the direction of the observed angle, and estimation markers are green triangles. 
+* The radar measurements are blue circles with an arrow pointing in the direction of the observed angle, and estimation markers are green triangles.
 
 ## Setup
 
@@ -84,3 +84,21 @@ Here is the main protocol that main.cpp uses for uWebSocketIO in communicating w
 
 If you'd like to generate your own radar and lidar data, see the
 [utilities repo](https://github.com/udacity/CarND-Mercedes-SF-Utilities) for Matlab scripts that can generate additional data.
+
+Directory Structure
+---
+    .
+    ├── data                            # Waypoint Data
+    ├── Docs                            # Documenation of the data flow and data format
+    ├── ide_profiles                    # IDE Profiles
+    └── src                             # Extended Kalman Filter Code
+        ├── Eigen                       # Folder containing files for the Eigen Library
+        ├── FusionEFK.cpp               # FusionEKF class cpp file
+        ├── FusionEKF.h                 # FusionEKF class header file
+        ├── json.hpp                    # json libary for c++
+        ├── kalman_filter.cpp           # KalmanFilter class cpp file
+        ├── kalman_filter.h             # KalmanFilter class header file
+        ├── main.cpp                    # Main
+        ├── measurement_package.h       # MeasurementPackage class
+        ├── tools.cpp                   # Tools class cpp file
+        └── tools.h                     # Tools class header file
