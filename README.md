@@ -15,9 +15,10 @@ How the simulator works:
 ![Filter Running in Simulator](sim_img.png)
 
 Description of the image:
-* The image above shows an example of the simulator and the extended kalman filter running.
+* The image above shows a snapshot of the simulator and the Extended Kalman Filter operating.
 * The lidar measurements are red circles.
-* The radar measurements are blue circles with an arrow pointing in the direction of the observed angle, and estimation markers are green triangles.
+* The radar measurements are blue circles with an arrow pointing in the direction of the observed angle.
+* The green triangles represent the Kalman Filter's estimation.
 
 ## Setup
 
